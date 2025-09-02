@@ -1,7 +1,8 @@
-
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Question } from '../types';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface ResultsScreenProps {
   questions: Question[];
@@ -18,6 +19,8 @@ const ResultCard: React.FC<{ title: string; value: string | number; color: strin
 );
 
 const ResultsScreen: React.FC<ResultsScreenProps> = ({ questions, userAnswers, onRestart }) => {
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const { correct, incorrect, unanswered } = useMemo(() => {
     let correct = 0;
     let incorrect = 0;
@@ -43,21 +46,84 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ questions, userAnswers, o
   ];
   const COLORS = ['#10B981', '#EF4444', '#6B7280'];
 
-  const handlePrint = () => {
-    window.print();
+  const handleDownloadPdf = () => {
+    const reportElement = document.getElementById('results-content');
+    if (!reportElement) return;
+
+    setIsDownloading(true);
+
+    html2canvas(reportElement, {
+      scale: 2, // Higher scale for better quality
+      useCORS: true,
+      onclone: (document) => {
+        // The cloned document is what gets rendered to the canvas.
+        // We can modify it to look like our print version.
+        const clonedReportElement = document.getElementById('results-content');
+        if (clonedReportElement) {
+          // Hide elements with 'no-print' class
+          clonedReportElement.querySelectorAll('.no-print').forEach(el => {
+            (el as HTMLElement).style.display = 'none';
+          });
+          // Show elements with 'print-only' class
+          clonedReportElement.querySelectorAll('.print-only').forEach(el => {
+            (el as HTMLElement).style.display = 'block';
+          });
+        }
+      }
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      
+      const ratio = canvasWidth / canvasHeight;
+      const imgWidth = pdfWidth;
+      const imgHeight = imgWidth / ratio;
+      
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pdfHeight;
+      }
+      
+      pdf.save('NORCET-9-Results-Analysis.pdf');
+      setIsDownloading(false);
+    }).catch(err => {
+      console.error("Failed to generate PDF", err);
+      setIsDownloading(false);
+      alert("Sorry, there was an error generating the PDF. Please try again.");
+    });
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 shadow-2xl rounded-2xl p-6 md:p-10 max-w-5xl mx-auto border border-slate-200 dark:border-slate-700 print-container">
+    <div id="results-content" className="bg-white dark:bg-slate-800 shadow-2xl rounded-2xl p-6 md:p-10 max-w-5xl mx-auto border border-slate-200 dark:border-slate-700 print-container">
       <div className="no-print flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">Exam Results</h1>
         <div>
-          <button onClick={handlePrint} className="mr-2 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition">Print Summary</button>
+          <button 
+            onClick={handleDownloadPdf} 
+            disabled={isDownloading}
+            className="mr-2 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition disabled:opacity-70 disabled:cursor-wait"
+          >
+            {isDownloading ? 'Downloading...' : 'Download PDF'}
+          </button>
           <button onClick={onRestart} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">Take Again</button>
         </div>
       </div>
       <div className="print-only hidden text-center mb-6">
-         <h1 className="text-2xl font-bold text-slate-800">NORCET 9 Mock Test - Result Summary</h1>
+         <h1 className="text-2xl font-bold text-slate-800">NORCET 9 AI Mock Test - Results Analysis</h1>
+         <p className="text-sm text-slate-600 mt-1">Generated on: {new Date().toLocaleDateString()}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
