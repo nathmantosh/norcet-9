@@ -1,27 +1,21 @@
-# Roadmap
+# Project Roadmap 🗺️
 
-This roadmap is intentionally practical. The first milestone is to make the app reliable and useful for learners before adding larger platform features.
+This roadmap outlines the plan for the NORCET 9 AI Mock Test platform. Our focus is to build a high-utility, reliable, and accessible exam tool first, followed by more advanced community features.
 
-## Near Term
+---
 
-- Add subject and difficulty tags for each question
-- Move question data from `constants.ts` into structured JSON
-- Add more NORCET-style questions across core nursing subjects
-- Add content-review notes for clinical questions
-- Improve mobile responsiveness of the exam screen
-- Add basic tests for scoring and timer behavior
+## 📍 Near Term: Core Features & Content
+* **Subject & Topic Tags:** Add taxonomy (e.g., Medical-Surgical, Pharmacology, Anatomy) to all questions for subject-wise performance analysis.
+* **Structured Data:** Extract questions from TS files into JSON databases to make translation and user editing easier.
+* **UI/UX Refinements:** Improve the responsive layout of the question grid on small mobile devices.
+* **Basic Test Suite:** Add tests (using Vitest/React Testing Library) for scoring calculations, question marking logic, and exam timer completion.
 
-## Community
+## 📍 Medium Term: Local Storage & Analytics
+* **Attempt History:** Allow users to save their score histories locally inside `localStorage` or `IndexedDB` to track progress over time.
+* **Visual Dashboards:** Build a stats page displaying subject-wise progress using simple charts.
+* **AI Medical Explainer:** Incorporate lightweight client-side AI integration to explain complex answers dynamically when clicked.
 
-- Label beginner-friendly issues
-- Publish contribution examples for new question submissions
-- Add a public demo link after deployment
-- Collect feedback from nursing students preparing for NORCET
-
-## Later
-
-- Topic-wise practice mode
-- Previous-attempt history in local storage
-- Exportable performance report
-- Question review workflow for maintainers
-- Accessibility audit and keyboard-only navigation improvements
+## 📍 Long Term: Platform Scale
+* **Interactive Question Form:** Build a simple web-based form where educators can draft new questions and export/submit them without writing code.
+* **Mock Result Export:** Allow students to export their performance reports as PDFs to share with educators or study groups.
+* **Multi-language Support:** Add support for multiple regional languages, starting with Hindi.

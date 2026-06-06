@@ -1,65 +1,63 @@
-# NORCET 9 AI Mock Test
+# NORCET 9 AI Mock Test 🏥📖
 
-NORCET 9 AI Mock Test is an open-source exam practice app for nursing officer aspirants. It provides a timed multiple-choice test experience, question navigation, review marking, automatic submission, and post-test explanations.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/nathmantosh/norcet-9/blob/main/CONTRIBUTING.md)
 
-The goal is to make high-quality, browser-based NORCET practice easier to access and easier for the nursing community to improve.
+**NORCET 9 AI Mock Test** is an open-source, interactive exam practice platform designed specifically for nursing officer recruitment aspirants. It features a timed testing engine, intuitive question navigation, visual score tracking, and detailed explanations.
 
-## Features
+The project is built entirely on the client side, ensuring it remains fast, free, and accessible even on low-bandwidth mobile networks.
 
-- Timed mock-test flow with automatic submission
-- Question palette for fast navigation
-- Mark-for-review support
-- Result screen with score review and explanations
-- Static question bank that can be reviewed and improved through pull requests
-- Vite + React + TypeScript frontend
+---
 
-## Project Status
+## 🚀 Live Demo
+🔗 **[Live Practice Link](https://nathmantosh.github.io/norcet-9/)** *(Deploy to GitHub Pages, Vercel, or Netlify)*
 
-This project is in early public development. The current version contains a starter NORCET-style question bank and a working exam interface. Contributions are welcome for question review, subject coverage, UI improvements, accessibility, and deployment.
+---
 
-See [ROADMAP.md](ROADMAP.md) for planned work.
+## ✨ Key Features
+* ⏱️ **Timed Mock Exams:** Simulates the real NORCET pressure with automatic submission when the timer expires.
+* 🧭 **Question Navigation Palette:** Quickly jump between answered, unanswered, and marked-for-review questions.
+* 📊 **Instant Score Summary:** Detailed breakdown of correct, incorrect, and skipped responses.
+* 🧠 **AI Explanations:** Explains the medical rationale behind correct and incorrect options to assist in learning.
+* 📁 **Offline-First:** Runs entirely in the browser, storing test history locally for easy review.
 
-## Getting Started
+## 🛠️ Tech Stack
+* **Core:** React 18, Vite, TypeScript
+* **State Management:** React Context / Component State
+* **Styling:** Vanilla CSS / Tailwind CSS
+
+---
+
+## 📦 Getting Started
 
 ### Prerequisites
+* Node.js v20+
+* npm or yarn
 
-- Node.js 20 or newer
-- npm
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nathmantosh/norcet-9.git
+   cd norcet-9
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-### Run Locally
+---
 
-```bash
-npm install
-npm run dev
-```
+## 🤝 Contributing
 
-Then open the local URL printed by Vite.
+We love contributions from both developers and the nursing community!
+* **Developers:** Check out our [Contributing Guide](CONTRIBUTING.md) to get started on open issues.
+* **Nursing Educators & Students:** You can suggest or correct questions directly by editing our question files or opening a [Question Correction Issue](https://github.com/nathmantosh/norcet-9/issues).
 
-### Build
+---
 
-```bash
-npm run build
-```
-
-## Contributing
-
-Good first contributions include:
-
-- Correcting or improving explanations
-- Adding nursing subject tags to questions
-- Adding new verified NORCET-style questions
-- Improving mobile layout and accessibility
-- Adding tests for scoring and timer behavior
-- Improving documentation for learners and contributors
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
-
-## Content Review
-
-This app is for educational practice only. Question corrections should include a brief explanation and, when possible, a trusted nursing textbook, official exam syllabus, or reputable clinical reference.
-
-Do not use this project as medical advice or as a substitute for official exam resources.
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE).
+## 🛡️ License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
