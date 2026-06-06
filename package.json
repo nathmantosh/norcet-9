@@ -1,7 +1,20 @@
 {
   "name": "norcet-9-ai-mock-test",
-  "private": true,
   "version": "0.0.0",
+  "description": "Open-source NORCET 9 nursing officer mock-test app with timed practice, review marking, scoring, and explanations.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathmantosh/norcet-9.git"
+  },
+  "keywords": [
+    "norcet",
+    "nursing",
+    "mock-test",
+    "exam-prep",
+    "react",
+    "typescript"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,11 +22,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "html2canvas": "1.4.1",
+    "jspdf": "^4.2.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "recharts": "^3.1.2",
-    "jspdf": "2.5.1",
-    "html2canvas": "1.4.1"
+    "recharts": "^3.1.2"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
