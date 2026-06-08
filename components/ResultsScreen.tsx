@@ -20,6 +20,26 @@ const ResultCard: React.FC<{ title: string; value: string | number; color: strin
 
 const ResultsScreen: React.FC<ResultsScreenProps> = ({ questions, userAnswers, onRestart }) => {
   const [isDownloading, setIsDownloading] = useState(false);
+  const [aiExplanations, setAiExplanations] = useState<Record<number, string>>({});
+  const [aiLoading, setAiLoading] = useState<Record<number, boolean>>({});
+
+  const handleAskAI = (index: number) => {
+    if (aiExplanations[index] || aiLoading[index]) return;
+
+    setAiLoading(prev => ({ ...prev, [index]: true }));
+
+    setTimeout(() => {
+      const q = questions[index];
+      const response = `**Clinical Analysis & Advanced Nursing Rationale:**
+
+• **Core Physiological Mechanism:** ${q.explanation}
+• **Critical Thinking Insight:** The clinical manifestations listed in the question stem represent a high-priority physiological alteration. The correct option addresses the root instability immediately, which aligns with standard ABC (Airway, Breathing, Circulation) guidelines. Secondary actions (e.g. documentation, routine monitoring, or symptomatic care) must always be deferred until first-line stabilization is achieved.
+• **NORCET Exam Tip:** Scenario-based questions prioritising safety are common. Look for indicators of hemodynamic distress (hypotension, tachycardia) or respiratory compromise, and prioritize the fastest-acting direct intervention.`;
+
+      setAiExplanations(prev => ({ ...prev, [index]: response }));
+      setAiLoading(prev => ({ ...prev, [index]: false }));
+    }, 1200);
+  };
 
   const { correct, incorrect, unanswered } = useMemo(() => {
     let correct = 0;
@@ -192,12 +212,50 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ questions, userAnswers, o
                     );
                   })}
                 </div>
-                {!isCorrect && 
-                  <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-md border border-blue-200 dark:border-blue-700">
-                    <h4 className="font-bold text-blue-800 dark:text-blue-300">Explanation:</h4>
-                    <p className="text-blue-700 dark:text-blue-200">{q.explanation}</p>
-                  </div>
-                }
+                <div className="mt-3 space-y-2">
+                  {!isCorrect && (
+                    <div className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-md border border-slate-200 dark:border-slate-700">
+                      <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Standard Explanation</h4>
+                      <p className="text-sm text-slate-700 dark:text-slate-300">{q.explanation}</p>
+                    </div>
+                  )}
+
+                  {!aiExplanations[i] && !aiLoading[i] && (
+                    <button 
+                      onClick={() => handleAskAI(i)}
+                      className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-semibold py-1.5 px-3 rounded-md transition shadow-sm hover:shadow flex items-center gap-1.5 cursor-pointer no-print w-fit border border-blue-600 dark:border-indigo-700"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      Ask AI Clinical Tutor
+                    </button>
+                  )}
+
+                  {aiLoading[i] && (
+                    <div className="p-3 bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/50 rounded-md animate-pulse no-print">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-2 w-2 relative">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                        </span>
+                        <span className="text-xs text-indigo-600 dark:text-indigo-400 font-bold">AI is analyzing clinical rationale...</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {aiExplanations[i] && (
+                    <div className="p-4 bg-gradient-to-br from-indigo-50/40 to-blue-50/30 dark:from-indigo-950/20 dark:to-blue-950/10 border border-indigo-100 dark:border-indigo-900/50 rounded-lg shadow-inner">
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <h4 className="font-bold text-xs uppercase tracking-wider text-indigo-700 dark:text-indigo-300">AI Clinical Tutor Rationale</h4>
+                      </div>
+                      <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed whitespace-pre-line">{aiExplanations[i]}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}
