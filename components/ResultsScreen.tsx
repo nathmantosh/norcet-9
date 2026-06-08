@@ -97,7 +97,7 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ questions, userAnswers, o
         heightLeft -= pdfHeight;
       }
       
-      pdf.save('NORCET-9-Results-Analysis.pdf');
+      pdf.save('NORCET-AI-Results-Analysis.pdf');
       setIsDownloading(false);
     }).catch(err => {
       console.error("Failed to generate PDF", err);
@@ -122,7 +122,7 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ questions, userAnswers, o
         </div>
       </div>
       <div className="print-only hidden text-center mb-6">
-         <h1 className="text-2xl font-bold text-slate-800">NORCET 9 AI Mock Test - Results Analysis</h1>
+         <h1 className="text-2xl font-bold text-slate-800">NORCET AI Mock Test - Results Analysis</h1>
          <p className="text-sm text-slate-600 mt-1">Generated on: {new Date().toLocaleDateString()}</p>
       </div>
 

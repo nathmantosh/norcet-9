@@ -11,7 +11,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, totalQuestions }
   return (
     <div className="bg-white dark:bg-slate-800 shadow-2xl rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto border border-slate-200 dark:border-slate-700">
       <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 mb-4">
-        NORCET 9 AI Mock Test
+        NORCET AI Mock Test
       </h1>
       <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">
         Prepare yourself for the nursing officer exam with a realistic simulation.

@@ -133,7 +133,7 @@ const ExamScreen: React.FC<ExamScreenProps> = ({ questions, onFinish }) => {
       )}
       <div className="flex-grow flex flex-col bg-white dark:bg-slate-800 shadow-xl rounded-xl border border-slate-200 dark:border-slate-700">
         <header className="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400">NORCET 9 Mock Exam</h1>
+          <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400">NORCET AI Mock Exam</h1>
           <Timer duration={totalTime} onTimeUp={handleTimeUp} />
         </header>
         <QuestionPanel
