@@ -1,7 +1,7 @@
 # NORCET 9 AI Mock Test 🏥📖
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/nathmantosh/norcet-9/blob/main/CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/nathmantosh/norcet-prep/blob/main/CONTRIBUTING.md)
 
 **NORCET 9 AI Mock Test** is an open-source, interactive exam practice platform designed specifically for nursing officer recruitment aspirants. It features a timed testing engine, intuitive question navigation, visual score tracking, and detailed explanations.
 
@@ -10,7 +10,7 @@ The project is built entirely on the client side, ensuring it remains fast, free
 ---
 
 ## 🚀 Live Demo
-🔗 **[Live Practice Link](https://nathmantosh.github.io/norcet-9/)** *(Deploy to GitHub Pages, Vercel, or Netlify)*
+🔗 **[Live Practice Link](https://nathmantosh.github.io/norcet-prep/)**
 
 ---
 
@@ -37,8 +37,8 @@ The project is built entirely on the client side, ensuring it remains fast, free
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/nathmantosh/norcet-9.git
-   cd norcet-9
+   git clone https://github.com/nathmantosh/norcet-prep.git
+   cd norcet-prep
    ```
 2. Install dependencies:
    ```bash
@@ -55,7 +55,7 @@ The project is built entirely on the client side, ensuring it remains fast, free
 
 We love contributions from both developers and the nursing community!
 * **Developers:** Check out our [Contributing Guide](CONTRIBUTING.md) to get started on open issues.
-* **Nursing Educators & Students:** You can suggest or correct questions directly by editing our question files or opening a [Question Correction Issue](https://github.com/nathmantosh/norcet-9/issues).
+* **Nursing Educators & Students:** You can suggest or correct questions directly by editing our question files or opening a [Question Correction Issue](https://github.com/nathmantosh/norcet-prep/issues).
 
 ---
 

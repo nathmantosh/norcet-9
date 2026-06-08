@@ -18,4 +18,4 @@ We will acknowledge your report within 48 hours and coordinate a patch within 7 
 ---
 
 ## Code Safety
-As a browser-based, client-side application, `norcet-9` does not store sensitive database credentials or user passwords in source control. Do not commit private API keys, tokens, or restricted exam materials.
+As a browser-based, client-side application, `norcet-prep` does not store sensitive database credentials or user passwords in source control. Do not commit private API keys, tokens, or restricted exam materials.
